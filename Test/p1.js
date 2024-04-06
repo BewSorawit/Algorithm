@@ -1,16 +1,23 @@
-const twoSum = (nums, tarket) => {
-    const numMap = new Map()
-    for (let i = 0; i < nums.length; i++) {
-        const diff = tarket - nums[i]
-        if (numMap.has(diff)) {
-            return [numMap.get(diff), i]
-        }
-        numMap.set(nums[i], i)
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {
+    if (strs.length === 0) {
+        return false
     }
-    console.log();
 
-}
+    let prefix = strs[0]
+    for (let i = 1; i < strs.length; i++) {
+        while (strs[i].indexOf(prefix) !== 0) {
+            prefix = prefix.substring(0,prefix.length-1)
+            if(prefix === ""){
+                return "";
+            }
+        }
+    }
+    return prefix
+};
 
-console.log(twoSum([2, 7, 11, 15], 9)); // Output: [0, 1]
-console.log(twoSum([3, 2, 4], 6));       // Output: [1, 2]
-console.log(twoSum([3, 3], 6));           // Output: [0, 1]
+console.log(longestCommonPrefix(["flower", "flow", "flight"])); // Output: "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"]));     // Output: ""
